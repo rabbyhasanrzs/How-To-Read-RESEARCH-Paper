@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>গবেষণা পেপার বিশ্লেষণ গাইড</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f6;--surf:#fff;--ink:#14213d;--mute:#52607a;--line:#d5dce6;--pp:#0f766e;--pp-s:#d9f0ec;--lg:#4338ca;--lg-s:#e4e2fb;--dr:#b8264b;--dr-s:#fadde4;--hl:#fff3c4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1729;--surf:#18223a;--ink:#e7ecf6;--mute:#9aa8c3;--line:#2b3956;--pp:#4fd1c0;--pp-s:#12443f;--lg:#a5a0ff;--lg-s:#2a2862;--dr:#ff7a9a;--dr-s:#4a1b2a;--hl:#4a4217}}
+:root[data-theme="dark"]{--bg:#0f1729;--surf:#18223a;--ink:#e7ecf6;--mute:#9aa8c3;--line:#2b3956;--pp:#4fd1c0;--pp-s:#12443f;--lg:#a5a0ff;--lg-s:#2a2862;--dr:#ff7a9a;--dr-s:#4a1b2a;--hl:#4a4217}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;line-height:1.75;font-size:17px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;align-items:center;overflow-x:auto;padding-top:8px;padding-bottom:8px}
+nav a{white-space:nowrap;color:var(--mute);text-decoration:none;padding:6px 14px;border-radius:99px;font-weight:500;font-size:15px}
+nav a:hover,nav a:focus-visible{background:var(--surf);color:var(--ink)}
+nav button{margin-left:auto}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--lg);outline-offset:2px}
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;padding:56px 0 40px}
+.hero h1{font-family:"Noto Serif Bengali",serif;font-size:clamp(30px,5vw,50px);line-height:1.3;margin:0 0 18px}
+.hero p{color:var(--mute);margin:0 0 14px;max-width:60ch}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.stat{background:var(--surf);border:1px solid var(--line);border-radius:12px;padding:8px 16px;font-size:15px}
+.stat b{font-size:22px;margin-right:6px}
+.eye{width:100%;max-width:380px;justify-self:center}
+.lesion{transform-box:fill-box;transform-origin:center;animation:pulse 3.2s ease-in-out infinite}
+.lesion:nth-of-type(2){animation-delay:.8s}.lesion:nth-of-type(3){animation-delay:1.6s}.lesion:nth-of-type(4){animation-delay:2.4s}
+@keyframes pulse{50%{transform:scale(1.7);opacity:.55}}
+@media (prefers-reduced-motion:reduce){.lesion{animation:none}html{scroll-behavior:auto}*{transition:none!important}}
+section{padding:36px 0}
+h2{font-family:"Noto Serif Bengali",serif;font-size:clamp(23px,3.5vw,32px);margin:0 0 8px;line-height:1.4}
+.lead{color:var(--mute);margin:0 0 24px;max-width:68ch}
+.tools{background:var(--surf);border:1px solid var(--line);border-radius:18px;padding:22px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tab{border:1.5px solid var(--line);background:transparent;border-radius:12px;padding:8px 16px;font-weight:600}
+.tab[aria-selected="true"]{color:#fff;border-color:transparent}
+.tab[data-t="pp"][aria-selected="true"]{background:#0f766e}
+.tab[data-t="lg"][aria-selected="true"]{background:#4338ca}
+.tab[data-t="dr"][aria-selected="true"]{background:#b8264b}
+.tabdesc{color:var(--mute);margin:0 0 16px;max-width:70ch}
+.tools-top{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.search{flex:1;min-width:200px;padding:10px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit}
+.prog{flex:1;min-width:200px;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mute)}
+.bar{flex:1;height:8px;background:var(--line);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--c,var(--pp));transition:width .35s}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.card{display:flex;gap:12px;align-items:flex-start;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:14px;width:100%;transition:background .2s,border-color .2s}
+.card:hover{border-color:var(--c)}
+.card .n{flex:none;width:34px;height:34px;border-radius:10px;background:var(--cs);color:var(--c);display:grid;place-items:center;font-weight:700}
+.card .t{flex:1;line-height:1.6}
+.card .ck{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:13px;color:transparent;margin-top:6px}
+.card.done{border-color:var(--c)}
+.card.done .t{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--line)}
+.card.done .ck{background:var(--c);border-color:var(--c);color:#fff}
+.card.hl{background:var(--hl);border-color:var(--c)}
+.empty{color:var(--mute);padding:18px 4px}
+.steps{display:grid;grid-template-columns:260px 1fr;gap:20px}
+.slist{display:flex;flex-direction:column;gap:6px}
+.step{display:flex;gap:12px;align-items:center;text-align:left;border:1.5px solid var(--line);background:var(--surf);border-radius:12px;padding:10px 14px;font-weight:600}
+.step span{flex:none;width:30px;height:30px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:14px}
+.step[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.step[aria-selected="true"] span{background:var(--bg);color:var(--ink)}
+.spanel{background:var(--surf);border:1px solid var(--line);border-radius:18px;padding:26px;align-self:start}
+.spanel h3{font-family:"Noto Serif Bengali",serif;margin:0 0 8px;font-size:22px}
+.spanel p{margin:0 0 18px;color:var(--mute)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.chip{font-size:14px;font-weight:600;padding:3px 12px;border-radius:99px}
+.go{background:var(--ink);color:var(--bg);border:0;border-radius:12px;padding:10px 18px;font-weight:600}
+.tips{display:grid;gap:10px}
+.tip{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;background:var(--surf);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px}
+.tip .box{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--mute);display:grid;place-items:center;color:transparent;margin-top:3px}
+.tip.on{border-color:var(--pp)}
+.tip.on .box{background:var(--pp);border-color:var(--pp);color:#fff}
+.warn{margin-top:14px;padding:14px 18px;border-left:5px solid var(--dr);background:var(--dr-s);border-radius:0 12px 12px 0}
+.reco{background:var(--ink);color:var(--bg);border-radius:22px;padding:30px}
+.reco h2{color:inherit}
+.reco ol{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:12px;counter-reset:r}
+.reco li{counter-increment:r;display:flex;gap:14px;align-items:flex-start}
+.reco li::before{content:counter(r);flex:none;width:30px;height:30px;border-radius:50%;background:var(--bg);color:var(--ink);display:grid;place-items:center;font-weight:700;font-size:15px}
+footer{padding:30px 0 40px;color:var(--mute);font-size:14px;text-align:center}
+@media (max-width:760px){.hero,.steps{grid-template-columns:1fr}.slist{flex-direction:row;overflow-x:auto}.step{white-space:nowrap}.eye{max-width:260px;order:-1}}
+.grid{grid-template-columns:1fr}
+.card{display:block;cursor:default}
+.card .ch{display:flex;gap:12px;align-items:flex-start}
+.card .hd{display:block;font-weight:700;font-family:system-ui,sans-serif;font-size:16px}
+.card .pu{display:block;color:var(--mute);font-size:15px}
+.card.done .t{text-decoration:none;color:inherit}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0 46px}
+.acts button{border:1.5px solid var(--line);background:var(--surf);border-radius:10px;padding:5px 14px;font-size:14px;font-weight:600}
+.acts button:hover{border-color:var(--c)}
+.acts .cp{background:var(--c);color:var(--bg);border-color:var(--c)}
+.card.done .dn{background:var(--cs);border-color:var(--c);color:var(--c)}
+.pb{margin:12px 0 0 46px;padding:14px 16px;background:var(--surf);border:1px solid var(--line);border-radius:12px;font-family:system-ui,sans-serif;font-size:15px;line-height:1.65}
+.pb p{margin:0 0 10px;white-space:pre-line}
+.pb ol,.pb ul{margin:0 0 10px;padding-left:22px}
+.pb li{margin-bottom:3px}
+@media (max-width:760px){.acts,.pb{margin-left:0}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+<a href="#intro">শুরু</a><a href="#tools">টুল ও উদ্দেশ্য</a><a href="#flow">কাজের ধাপ</a><a href="#tips">সতর্কতা</a><a href="#reco">পরামর্শ</a>
+<button id="theme" class="tab" aria-label="থিম বদলান">◐ থিম</button>
+</div></nav>
+
+<main class="wrap">
+<header class="hero" id="intro">
+<div>
+<h1>পেশাদার গবেষকের মতো রিসার্চ পেপার বিশ্লেষণ</h1>
+<p>Paperpal বা Logically AI-তে শুধু “এই পেপারের সারাংশ দাও” বা “এই গ্রাফ ব্যাখ্যা করো” বললে পেশাদার মানের বিশ্লেষণ হয় না। প্রশ্নগুলো এমনভাবে সাজাতে হয়, যাতে পেপারের রিসার্চ গ্যাপ, মেথডোলজি, গাণিতিক ভিত্তি, পরীক্ষামূলক ফলাফল, সীমাবদ্ধতা, নতুনত্ব এবং ভবিষ্যৎ গবেষণার দিক বের করে আনা যায়।</p>
+<p>আপনার গবেষণার বিষয় Diabetic Retinopathy (DR) Detection with Explainability মাথায় রেখে পুরো গাইডটি দুটি টুলের জন্য আলাদা করে সাজানো হয়েছে।</p>
+<div class="stats">
+<div class="stat"><b>১২</b>Paperpal</div><div class="stat"><b>৬</b>Logically AI</div><div class="stat"><b>৫</b>DR বিশেষায়িত</div><div class="stat"><b>৭</b>কাজের ধাপ</div>
+</div>
+</div>
+<svg class="eye" viewBox="0 0 320 320" role="img" aria-label="রেটিনার ফান্ডাস ইমেজের চিত্র, যাতে মাইক্রোঅ্যানিউরিজম ও রক্তক্ষরণের দাগ আছে">
+<defs><radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f6a35c"/><stop offset=".7" stop-color="#d9622f"/><stop offset="1" stop-color="#7a2a14"/></radialGradient></defs>
+<circle cx="160" cy="160" r="148" fill="url(#g)"/>
+<g fill="none" stroke="#8c1f1f" stroke-width="3" stroke-linecap="round" opacity=".75">
+<path d="M215 150C185 120 150 90 110 70"/><path d="M215 150C190 170 160 215 120 250"/><path d="M215 150C170 150 120 140 60 150"/><path d="M190 135C170 110 175 80 195 50"/><path d="M190 170C180 200 195 230 215 255"/></g>
+<circle cx="222" cy="150" r="24" fill="#ffd97a" opacity=".95"/><circle cx="222" cy="150" r="11" fill="#fff0b8"/>
+<circle class="lesion" cx="120" cy="120" r="6" fill="#4a0d0d"/>
+<circle class="lesion" cx="150" cy="200" r="8" fill="#4a0d0d"/>
+<circle class="lesion" cx="95" cy="170" r="5" fill="#4a0d0d"/>
+<circle class="lesion" cx="170" cy="115" r="5" fill="#4a0d0d"/>
+<circle cx="160" cy="160" r="148" fill="none" stroke="var(--ink)" stroke-width="6"/>
+</svg>
+</header>
+
+<section id="tools">
+<h2>টুল অনুযায়ী প্রম্পটের উদ্দেশ্য</h2>
+<p class="lead">প্রতিটি প্রম্পটের নিচে তার সব প্রশ্ন দেওয়া আছে। এক ক্লিকে Copy Prompt চেপে পুরো প্রম্পট কপি করে Paperpal বা Logically-তে পেস্ট করুন। শেষ করা প্রম্পটে টিক দিন।</p>
+<div class="tools">
+<div class="tabs" role="tablist">
+<button class="tab" role="tab" data-t="pp">Paperpal AI</button>
+<button class="tab" role="tab" data-t="lg">Logically AI</button>
+<button class="tab" role="tab" data-t="dr">DR বিশেষায়িত</button>
+</div>
+<p class="tabdesc" id="tabdesc"></p>
+<div class="tools-top">
+<input class="search" id="q" type="search" placeholder="প্রম্পট বা প্রশ্ন খুঁজুন, যেমন: dataset, Grad-CAM, ablation" aria-label="কার্ড খুঁজুন">
+<div class="prog"><span id="ptxt"></span><div class="bar"><i id="pbar"></i></div></div>
+</div>
+<div class="grid" id="grid"></div>
+</div>
+</section>
+
+<section id="flow">
+<h2>প্রম্পট ব্যবহারের সঠিক ক্রম</h2>
+<p class="lead">সব প্রম্পট একসাথে দেবেন না। নিচের ধাপগুলো অনুসরণ করুন। কোনো ধাপে ক্লিক করলে সেই ধাপের কার্ডগুলো হাইলাইট হবে।</p>
+<div class="steps">
+<div class="slist" id="slist" role="tablist"></div>
+<div class="spanel" id="spanel" aria-live="polite"></div>
+</div>
+</section>
+
+<section id="tips">
+<h2>একটি গুরুত্বপূর্ণ পেশাদার পরামর্শ</h2>
+<p class="lead">AI-এর উত্তরকে কখনো পেপারের যাচাইকৃত তথ্য ধরে নেবেন না। প্রতিটি গুরুত্বপূর্ণ দাবির ক্ষেত্রে নিচের তালিকা মিলিয়ে নিন।</p>
+<div class="tips" id="tips-list"></div>
+<div class="warn" id="warn">পেপারে তথ্য না থাকলে AI-কে স্পষ্ট করে বলুন, তথ্যটি রিপোর্ট করা হয়নি, অনুমান বা বানিয়ে লিখবে না। সবগুলো টিক দিলে আপনার যাচাই-তালিকা সম্পূর্ণ।</div>
+</section>
+
+<section id="reco">
+<div class="reco">
+<h2>আমার সুপারিশ</h2>
+<p style="margin:0;opacity:.85">এভাবে এগোলে আপনি শুধু পেপার পড়বেন না, নিজের গবেষণা প্রশ্ন, মেথডোলজি ও এক্সপেরিমেন্ট ডিজাইন তৈরির প্রমাণও সংগ্রহ করতে পারবেন।</p>
+<ol>
+<li>প্রথমে আপনার DR ডিটেকশন গবেষণার সাথে সরাসরি প্রাসঙ্গিক ৫ থেকে ১০টি পেপার বেছে নিন।</li>
+<li>প্রতিটি পেপারের জন্য Paperpal-এর ১, ২, ৪, ৭ ও ৯ নম্বর কার্ড এবং DR-এর XAI কার্ডটি ব্যবহার করুন।</li>
+<li>তারপর Logically-তে সব পেপারের তথ্য তুলনা করে রিসার্চ গ্যাপ চিহ্নিত করুন।</li>
+</ol>
+</div>
+</section>
+</main>
+<footer class="wrap">এই গাইড একটি শেখার সহায়ক। যেকোনো দাবি ব্যবহারের আগে মূল পেপারে যাচাই করুন।</footer>
+
+<script>
+var T={
+pp:{name:"Paperpal AI",c:"--pp",s:"--pp-s",desc:"Paperpal-এর Chat PDF বা মাল্টি-PDF ফিচারে পেপার আপলোড করে ক্রমানুসারে এগুলো ব্যবহার করবেন। প্রতিটির আলাদা উদ্দেশ্য আছে।",items:[
+"পেপারটা ভালো করে বুঝে নেওয়া","আগের গবেষণায় কী অনুপস্থিত ছিল, সেটা বের করা","গবেষণাটি আসলে নতুন কী অবদান রেখেছে, তা যাচাই করা","মেথডোলজি নিজে বাস্তবায়ন করার মতো করে বোঝা","ডেটাসেট গবেষণার জন্য উপযুক্ত কি না বোঝা","সমীকরণ, অ্যালগরিদম ও টেকনিক্যাল পরিভাষা পরিষ্কার করা","ফলাফল শক্তিশালী কি না এবং কেন, তা বিশ্লেষণ করা","ফিগার দেখে বৈজ্ঞানিক ব্যাখ্যা করা","রিভিউয়ারের মতো পেপারের দুর্বলতা চিহ্নিত করা","কোন কম্পোনেন্ট পারফরম্যান্সে কতটা অবদান রাখে, তা দেখা","নিজের গবেষণা বাস্তবায়নের প্রস্তুতি নেওয়া","নিজের পরের গবেষণা প্রকল্পের দিক খুঁজে বের করা"]},
+lg:{name:"Logically AI",c:"--lg",s:"--lg-s",desc:"Logically ব্যবহার করুন শুধু পেপার বোঝার জন্য নয়, বরং একটি সংগঠিত গবেষণা জ্ঞানভান্ডার তৈরির জন্য। গুরুত্বপূর্ণ অংশ, ফিগার, গ্রাফ ও সমীকরণ হাইলাইট করে নিজের নোটের সাথে যুক্ত করুন।",items:[
+"একাধিক পেপারের মধ্যে নিয়মমাফিক তুলনা","সাহিত্য পর্যালোচনা থেকে গবেষণাযোগ্য প্রশ্ন তৈরি করা","বিভিন্ন পেপারে ফলাফল আলাদা কেন, তা বোঝা","গুরুত্বপূর্ণ ফিগারের অর্থ নিজের গবেষণা নোটে সংরক্ষণ করা","ভবিষ্যৎ থিসিস, পেপার লেখা ও প্রেজেন্টেশনের জন্য নোট সাজানো","আলাদা আলাদা পেপারের ফলাফল একসাথে সংশ্লেষণ করা"]},
+dr:{name:"DR বিশেষায়িত",c:"--dr",s:"--dr-s",desc:"আপনার বর্তমান গবেষণার দিক Diabetic Retinopathy (DR) Detection with Explainability। সাধারণ কার্ডগুলোর সাথে এই বিশেষায়িত কার্ডগুলো ব্যবহার করলে আরও বেশি সুবিধা পাবেন।",items:[
+"ফান্ডাস ইমেজ থেকে DR শ্রেণিবিন্যাস পর্যন্ত পুরো পাইপলাইন বোঝা","Grad-CAM, Grad-CAM++, SHAP ও অন্যান্য XAI পদ্ধতির বিশ্লেষণ","বেসিক CNN বনাম EfficientNet ও অন্যান্য ট্রান্সফার-লার্নিং মডেলের তুলনা","মডেলটি বাস্তব ক্লিনিক্যাল পরিবেশে কাজ করবে কি না","বিদ্যমান পেপারের ওপর ভিত্তি করে নিজের গবেষণা পরিকল্পনা তৈরি"]}};
+var P={pp:[
+{h:"Prompt 1 — Research Paper-er Overall Understanding",i:"Act as an experienced academic researcher and critically analyze the uploaded research paper. Provide a structured overview covering:",q:["The main research problem and its importance.","The research objectives and research questions.","The motivation behind the study.","The proposed methodology and overall workflow.","The dataset and experimental setup.","The main results, supported by reported numerical evidence.","The major contributions and claimed novelty.","The limitations acknowledged by the authors.","The practical and scientific significance of the findings."],o:"Clearly distinguish information explicitly stated in the paper from your own interpretation. Cite the relevant section, page, figure, table, or equation whenever possible. Do not invent missing information."},
+{h:"Prompt 2 — Research Gap Identification",i:"Analyze the research gap addressed by this paper as a critical literature reviewer.",q:["What specific problem remains unresolved in previous studies?","What limitations of existing methods motivated this research?","Which prior studies are most relevant to the identified gap?","How do the authors demonstrate that the gap exists?","Is the gap clearly supported by evidence, or is it mainly claimed by the authors?","What aspects of the problem remain unresolved even after this study?","What specific research opportunities could be explored in future work?"],o:"For every major claim, identify supporting evidence and relevant citations from the paper. Do not assume that a limitation mentioned in another study automatically applies to this paper."},
+{h:"Prompt 3 — Novelty and Original Contribution",i:"Evaluate the novelty and original contributions of this research paper.",q:["What are the paper’s explicitly claimed contributions?","Which components are genuinely new, and which are adaptations of existing techniques?","How does the proposed method differ from the most relevant previous approaches?","Is the novelty methodological, architectural, experimental, theoretical, or application-specific?","What evidence supports each novelty claim?","Are the claimed contributions demonstrated through experiments or theoretical analysis?","What additional experiments or comparisons would strengthen the novelty claim?"],o:"Separate the authors’ claims from your independent assessment. Do not label a contribution as novel without sufficient comparative evidence."},
+{h:"Prompt 4 — Methodology Deep Dive",i:"Explain the complete research methodology step by step, as if I need to reproduce the study independently.",q:["What are the inputs and outputs of the proposed method?","What are the stages of the pipeline, in their exact order?","What algorithms, models, mathematical operations, and preprocessing techniques are used?","What is the purpose of each stage?","What are the important hyperparameters and their reported values?","How are training, validation, and testing performed?","What assumptions does the method make?","Which implementation details are missing or ambiguous?","What information would I need to reproduce the experiments faithfully?"],o:"Explain technical terms and equations, but do not invent unspecified parameter values or implementation details."},
+{h:"Prompt 5 — Dataset and Data Quality",b:1,i:"Critically evaluate the dataset used in this study.\n\nIdentify the dataset source, sample size, number of classes, class distribution, inclusion and exclusion criteria, data collection process, annotation method, and preprocessing steps.\n\nAssess:",q:["Whether the dataset is representative of the intended population.","Whether class imbalance could affect the results.","Whether data leakage may occur between training, validation, and testing.","Whether images from the same patient or source could appear across different splits.","Whether the dataset has potential selection bias or label noise.","Whether independent external validation is performed.","Whether the dataset and preprocessing pipeline are sufficiently documented for reproduction."],o:"Clearly state which issues are confirmed by the paper and which require further investigation."},
+{h:"Prompt 6 — Mathematical and Technical Explanation",i:"Act as a research supervisor teaching me the technical foundations of this paper.\n\nExplain each important equation, algorithm, and technical concept in the order it appears.\n\nFor each equation:",q:["Write the equation accurately.","Define every symbol and variable.","Explain the mathematical intuition.","Explain why the equation is necessary.","Describe how it is applied in the proposed method.","Provide a small illustrative example where appropriate.","Explain how changing important variables might affect the output."],o:"Distinguish established mathematical principles from assumptions or design choices introduced by the authors. Reference the equation numbers and relevant sections."},
+{h:"Prompt 7 — Experimental Results and Metrics",i:"Perform a rigorous analysis of the experimental results.",q:["Identify all evaluation metrics and define their mathematical meanings.","Extract the main numerical results from the tables and figures.","Explain which results directly support the research objectives.","Compare the proposed method against the baselines under comparable conditions.","Determine whether improvements are absolute or relative, and calculate them only when sufficient data are available.","Assess whether confidence intervals, statistical significance tests, or variability across runs are reported.","Identify possible confounding factors or unfair comparisons.","Explain which conclusions are justified by the evidence and which may be overstated."],o:"Use the paper’s actual reported values and cite the relevant tables or figures. Never infer unreported results from a graph without explaining the uncertainty."},
+{h:"Prompt 8 — Figures, Graphs and Tables",i:"Analyze each important figure, graph, and table in the paper as a scientific reviewer.\n\nFor each item, explain:",q:["What question it is intended to answer.","What each axis, legend, symbol, color, or column represents.","The main trend, comparison, or pattern.","The numerical evidence supporting the interpretation.","What conclusion can reasonably be drawn.","What cannot be concluded from the figure alone.","Whether the figure supports the authors’ claims or reveals potential weaknesses."],o:"Reference the exact figure or table number. If the underlying numerical data are unavailable, state that limitation rather than estimating unsupported values."},
+{h:"Prompt 9 — Limitations and Critical Review",i:"Act as a critical but fair peer reviewer for this paper.\n\nIdentify:",q:["Limitations explicitly acknowledged by the authors.","Additional limitations supported by the study design, data, experiments, or reported evidence.","Weaknesses in the methodology and experimental evaluation.","Missing baselines, ablation studies, external validation, or statistical analyses, where relevant.","Threats to validity and generalizability.","Claims that are insufficiently supported by evidence.","The three most important improvements that would strengthen the work."],o:"For each criticism, explain the evidence, why it matters, and a practical way to address it. Do not invent flaws or assume an experiment is absent without checking the paper."},
+{h:"Prompt 10 — Ablation Study and Component Analysis",i:"Analyze the ablation studies and component-level evidence in this paper.",q:["Which components of the proposed method are evaluated separately?","What happens when each component is removed, replaced, or modified?","Which component appears to contribute most to performance, based on reported evidence?","Are the ablation experiments sufficiently controlled?","Are interactions between components investigated?","What additional ablation experiments would help establish causal contributions?"],o:"If no ablation study is reported, identify this as an evaluation limitation and propose a suitable experiment. Do not claim that a component causes an improvement based only on correlation or an uncontrolled comparison."},
+{h:"Prompt 11 — Reproducibility and Implementation",b:1,i:"Create a reproducibility checklist for this research paper.\n\nInclude:",q:["Dataset access and preprocessing.","Model architecture and initialization.","Training configuration and hyperparameters.","Loss functions and optimization algorithms.","Data splitting and validation protocol.","Evaluation metrics and comparison baselines.","Software, hardware, and random seed information, if reported.","Checkpoints, source code, and supplementary materials.","Missing details that could prevent an independent reproduction."],o:"For every item, label it as explicitly reported, partially reported, or not found in the available paper. Then provide a prioritized list of questions that should be resolved before implementation."},
+{h:"Prompt 12 — Future Research Directions",i:"Based on the evidence and limitations in this paper, propose promising future research directions.\n\nFor each direction, provide:",q:["The unresolved research problem.","Evidence from this paper or its cited literature motivating the direction.","A precise research question.","A testable hypothesis, where appropriate.","A proposed methodology and suitable baselines.","The required dataset and evaluation metrics.","Potential technical challenges and risks.","The expected scientific contribution.","How to distinguish this project from existing work."],o:"Rank the proposed directions by scientific significance, feasibility, and potential originality. Clearly label speculative suggestions and do not guarantee that any idea is novel without a dedicated literature search."}],
+lg:[
+{h:"Prompt 1 — Multiple Paper-er Comparative Literature Review",i:"Act as an academic literature review analyst. Compare all uploaded research papers on the same research topic.\n\nCreate a comparison matrix containing:",q:["Paper title and publication year.","Research objective and identified gap.","Dataset, sample size, and class distribution, where applicable.","Proposed method, architecture, or algorithm.","Preprocessing and feature extraction techniques.","Evaluation metrics and reported results.","Baselines and experimental protocols.","Claimed contributions and novelty.","Limitations and future work.","Relevance to my research question."],o:"After the matrix, identify recurring methodological patterns, genuine disagreements, evidence gaps, and promising opportunities for further research.\n\nCite the source paper for every extracted claim. Use “not reported” where information is unavailable. Do not rank methods solely by their highest reported metric when datasets or evaluation conditions differ."},
+{h:"Prompt 2 — Research Question and Hypothesis Development",i:"Using the uploaded papers as evidence, identify research questions that remain insufficiently answered.\n\nFor each candidate question:",q:["Explain the unresolved problem.","Cite the papers supporting the existence of the problem.","State a precise, testable research question.","Propose a hypothesis, if scientifically appropriate.","Define independent variables, dependent variables, and relevant controls.","Suggest a feasible experimental design.","Specify datasets, evaluation metrics, and baselines.","Explain the potential contribution and main risks."],o:"Separate evidence-supported gaps from your own proposed ideas. Identify what further literature search is necessary before claiming originality."},
+{h:"Prompt 3 — Critical Comparison of Conflicting Results",i:"Compare the findings of the uploaded studies and investigate apparent contradictions.",q:["Which findings agree or disagree?","Are the studies using comparable datasets, populations, class definitions, and evaluation metrics?","Do training/test splits, preprocessing, or validation strategies differ?","Could class imbalance, sample size, or data leakage explain some differences?","Is there statistical evidence that the reported differences are meaningful?","Which conclusions are best supported by the available evidence?","What controlled experiment could resolve the disagreement?"],o:"Support each explanation with evidence from the uploaded papers. If the available evidence cannot establish a cause, state that explicitly."},
+{h:"Prompt 4 — Figure and Graph Interpretation",b:1,i:"Explain the selected figure, graph, or table in the context of the paper’s research objectives.\n\nDescribe what is measured, what the axes and legends represent, the main observed patterns, the relevant numerical evidence, and the conclusions justified by the results.\n\nThen explain:",q:["What scientific question this figure helps answer.","What the figure does not establish.","How this evidence relates to the paper’s main claim.","What follow-up analysis would strengthen the interpretation."],o:"Finish with a concise research note that I can save alongside the highlighted figure. Reference the figure number and relevant text."},
+{h:"Prompt 5 — Research Knowledge Notes",i:"Convert my highlighted passages and annotations into a structured research note.\n\nOrganize the information under:",q:["Core concept and definition.","Important technical terminology.","Methodology and equations.","Key experimental findings.","Important figures and tables.","Strengths and limitations.","Relationship to other papers in my library.","Potential applications to my research.","Unanswered questions.","Exact source references for future citation."],o:"Preserve the meaning of the original research. Distinguish direct quotations, paraphrased findings, and my own interpretations. Do not invent bibliographic details or attribute claims to the wrong paper."},
+{h:"Prompt 6 — Literature Review Synthesis",i:"Synthesize the uploaded papers into a critical, thematic literature review.\n\nDo not summarize each paper independently in separate paragraphs only. Instead, organize the review around major themes, methodological differences, evidence patterns, disagreements, and unresolved research problems.\n\nFor each theme:",q:["Summarize the relevant findings across studies.","Compare the strengths and weaknesses of the approaches.","Explain differences in datasets, experimental designs, and metrics.","Identify where the evidence is consistent or contradictory.","State the remaining research gap and why it matters.","Cite the relevant original papers."],o:"Finish with a logically connected research-gap statement. Do not fabricate citations, claim unsupported consensus, or present AI-generated interpretations as established facts."}],
+dr:[
+{h:"Prompt 1 — DR Detection Pipeline Analysis",i:"Analyze this paper specifically from the perspective of diabetic retinopathy detection using retinal fundus images.\n\nExplain the complete pipeline, including:",q:["Dataset source, DR grading system, and class definitions.","Image quality assessment and preprocessing.","CLAHE or other enhancement methods, if used.","Image resizing, normalization, augmentation, and artifact handling.","CNN or transfer-learning architecture.","Feature extraction and classification.","Loss function, optimizer, and training strategy.","Class imbalance handling.","Evaluation using accuracy, sensitivity, specificity, precision, recall, F1-score, AUC, and confusion matrix, where reported.","The main implementation challenges and reproducibility requirements."],o:"Explain the clinical and technical motivation for each step. Do not assume a technique was used unless the paper confirms it."},
+{h:"Prompt 2 — Explainability (XAI) Analysis",i:"Critically analyze the explainability component of this diabetic retinopathy detection study.",q:["Which explainability methods are used, such as Grad-CAM, Grad-CAM++, LIME, or SHAP?","What is the mathematical or conceptual foundation of each method?","At which layer or stage is the explanation generated?","What exactly do the generated heatmaps or feature attributions represent?","Do the explanations highlight clinically relevant retinal lesions?","How do the authors validate the quality of explanations?","Are the explanations evaluated quantitatively or only visually?","Is there evidence of faithfulness, localization accuracy, stability, or robustness?","Could the model rely on artifacts, image borders, or dataset-specific shortcuts?","What additional experiments would make the model more interpretable and trustworthy?"],o:"Separate visual plausibility from demonstrated explanation quality. Never assume that a convincing heatmap proves the model is clinically reliable."},
+{h:"Prompt 3 — Model Architecture Comparison",i:"Evaluate the model architecture used for diabetic retinopathy detection and compare it with relevant alternatives discussed in the paper.\n\nExplain:",q:["Why the selected architecture may be appropriate for fundus images.","Its feature extraction mechanism and important architectural components.","The role of pretrained weights, if used.","Model complexity, parameter count, computational cost, and inference requirements, where reported.","Performance differences under comparable datasets and evaluation protocols.","Whether the study includes controlled architecture comparisons or ablation experiments.","The trade-offs among predictive performance, computational efficiency, and explainability."],o:"Recommend a fair experimental design for comparing a baseline CNN with EfficientNet or another suitable architecture. Do not assume one model is superior without comparable evidence."},
+{h:"Prompt 4 — Clinical Reliability and Generalization",i:"Evaluate the clinical relevance and generalizability of this diabetic retinopathy detection model.\n\nAssess:",q:["Whether the training and test populations reflect the intended clinical population.","Whether images from different cameras, clinics, and acquisition conditions are represented.","Whether patient-level data splitting and independent external validation are performed.","How class imbalance affects sensitivity and specificity.","Whether clinically important false negatives and false positives are examined.","Whether calibration, uncertainty estimation, and decision thresholds are reported.","Whether the model is tested on low-quality images or images with different distributions.","Whether the explainability outputs have been validated by clinicians or lesion annotations."],o:"Identify which clinical claims are supported by the study and what additional validation would be required before real-world deployment."},
+{h:"Prompt 5 — Design a Potential Research Extension",b:1,i:"Based on this paper and its limitations, propose a feasible research extension for diabetic retinopathy detection with explainability.\n\nConsider potential directions such as:",q:["Comparing CNN baselines with EfficientNet variants.","Studying preprocessing choices such as CLAHE.","Evaluating class imbalance and ordinal DR grading.","Comparing Grad-CAM and Grad-CAM++ explanations.","Measuring explanation localization, stability, or faithfulness.","Testing cross-dataset generalization."],o:"Do not assume every direction is appropriate. Select the most promising options based on the paper’s evidence, available datasets, computational feasibility, and scientific value.\n\nFor each recommended project, specify the research question, hypothesis, dataset, baseline models, experimental controls, evaluation metrics, ablation studies, expected contribution, limitations, and novelty checks required before starting."}]};
+var opn={};
+function pt(p){return p.i+"\n\n"+p.q.map(function(x,j){return (p.b?"• ":(j+1)+". ")+x}).join("\n")+(p.o?"\n\n"+p.o:"")}
+function pbody(p){var l=p.q.map(function(x){return "<li>"+x+"</li>"}).join(""),u=p.b?"ul":"ol";return '<div class="pb"><p>'+p.i+'</p><'+u+'>'+l+'</'+u+'>'+(p.o?'<p>'+p.o+'</p>':'')+'</div>'}
+function cp(s,b){var ok=function(){var o=b.textContent;b.textContent="Copied ✓";setTimeout(function(){b.textContent=o},1600)};
+function fb(){var t=document.createElement("textarea");t.value=s;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();try{document.execCommand("copy");ok()}catch(x){b.textContent="Copy হয়নি"}document.body.removeChild(t)}
+if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(s).then(ok,fb);else fb()}
+var STEPS=[
+{t:"পেপার যাচাই",d:"Paperpal-এর ১ নম্বর কার্ড দিয়ে ঠিক করুন, পেপারটি আপনার গবেষণা বিষয়ের জন্য প্রাসঙ্গিক কি না।",k:[["pp",1]]},
+{t:"গ্যাপ ও নতুনত্ব",d:"Paperpal-এর ২ ও ৩ নম্বর কার্ড দিয়ে বিদ্যমান সমস্যা এবং পেপারের মৌলিক অবদান চিহ্নিত করুন।",k:[["pp",2],["pp",3]]},
+{t:"টেকনিক্যাল পদ্ধতি",d:"Paperpal-এর ৪ থেকে ৬ নম্বর কার্ড দিয়ে পাইপলাইন, ডেটাসেট, সমীকরণ ও আর্কিটেকচার বুঝুন।",k:[["pp",4],["pp",5],["pp",6]]},
+{t:"প্রমাণ যাচাই",d:"Paperpal-এর ৭ থেকে ১০ নম্বর কার্ড দিয়ে ফলাফল, ফিগার, সীমাবদ্ধতা ও অ্যাবলেশন স্টাডি মূল্যায়ন করুন।",k:[["pp",7],["pp",8],["pp",9],["pp",10]]},
+{t:"পুনরুৎপাদনের প্রস্তুতি",d:"Paperpal-এর ১১ নম্বর কার্ড দিয়ে অনুপস্থিত তথ্য এবং বাস্তবায়নের চাহিদা নোট করুন।",k:[["pp",11]]},
+{t:"পেপারজুড়ে সাজানো",d:"Logically-র ১ থেকে ৬ নম্বর কার্ড দিয়ে তুলনামূলক ছক, নোট, বিরোধপূর্ণ ফলাফল ও বিষয়ভিত্তিক সংশ্লেষণ তৈরি করুন।",k:[["lg",1],["lg",2],["lg",3],["lg",4],["lg",5],["lg",6]]},
+{t:"নিজের গবেষণার দিক",d:"Paperpal-এর ১২ নম্বর এবং DR বিশেষায়িত ২ থেকে ৫ নম্বর কার্ড দিয়ে সম্ভাব্য গবেষণা প্রশ্ন ও পরীক্ষণ পরিকল্পনা তৈরি করুন।",k:[["pp",12],["dr",2],["dr",3],["dr",4],["dr",5]]}];
+var TIPS=["মূল পেপারের সংশ্লিষ্ট সেকশন, সমীকরণ, টেবিল বা ফিগার মিলিয়ে দেখুন।","পেপারে রিপোর্ট করা ফলাফল এবং AI-এর ব্যাখ্যা আলাদা রাখুন।","ডেটাসেট, মূল্যায়ন পদ্ধতি ও বেসলাইন তুলনাযোগ্য কি না যাচাই করুন।","রিসার্চ গ্যাপ বা নতুনত্বের দাবি করার আগে সংশ্লিষ্ট সাহিত্য খুঁজে দেখুন।","পেপারে তথ্য না থাকলে AI-কে স্পষ্ট করে বলুন, তথ্যটি রিপোর্ট করা হয়নি, অনুমান বা বানিয়ে লিখবে না।"];
+var bn="০১২৩৪৫৬৭৮৯";
+function B(n){return String(n).replace(/\d/g,function(d){return bn[d]})}
+var done={},tipOn={},cur="pp",hl={};
+try{var s=JSON.parse(localStorage.getItem("rg1")||"{}");done=s.d||{};tipOn=s.t||{}}catch(e){}
+function save(){try{localStorage.setItem("rg1",JSON.stringify({d:done,t:tipOn}))}catch(e){}}
+var $=function(i){return document.getElementById(i)};
+function tabs(){document.querySelectorAll(".tab[data-t]").forEach(function(b){b.setAttribute("aria-selected",b.dataset.t===cur)})}
+function grid(){
+var t=T[cur],q=$("q").value.trim().toLowerCase(),h="",n=0,dn=0;
+t.items.forEach(function(x,i){var id=cur+(i+1);if(done[id])dn++;
+if(q&&(x+P[cur][i].h+pt(P[cur][i])).toLowerCase().indexOf(q)<0)return;n++;
+var p=P[cur][i],isO=opn[id]!==false;
+h+='<div class="card'+(done[id]?" done":"")+(hl[id]?" hl":"")+'" id="c-'+id+'" style="--c:var('+t.c+');--cs:var('+t.s+')"><div class="ch"><span class="n">'+B(i+1)+'</span><div class="t"><b class="hd">'+p.h+'</b><span class="pu">'+x+'</span></div></div><div class="acts"><button data-a="o" aria-expanded="'+isO+'">'+(isO?"প্রশ্নগুলো লুকান":"প্রশ্নগুলো দেখুন")+'</button><button class="cp" data-a="c">Copy Prompt</button><button class="dn" data-a="d" aria-pressed="'+!!done[id]+'">'+(done[id]?"✓ সম্পন্ন":"সম্পন্ন করুন")+'</button></div>'+(isO?pbody(p):"")+'</div>'});
+$("grid").innerHTML=n?h:'<p class="empty">কোনো কার্ড মেলেনি। অন্য শব্দ দিয়ে খুঁজুন।</p>';
+$("tabdesc").textContent=t.desc;
+$("ptxt").textContent=B(dn)+"/"+B(t.items.length)+" সম্পন্ন";
+$("pbar").style.width=(dn/t.items.length*100)+"%";$("pbar").style.setProperty("--c","var("+t.c+")")}
+document.querySelectorAll(".tab[data-t]").forEach(function(b){b.onclick=function(){cur=b.dataset.t;hl={};tabs();grid()}});
+$("q").oninput=grid;
+$("grid").onclick=function(e){var b=e.target.closest("button[data-a]");if(!b)return;var id=b.closest(".card").id.slice(2),a=b.dataset.a;
+if(a==="c"){cp(pt(P[id.slice(0,2)][+id.slice(2)-1]),b);return}
+if(a==="o")opn[id]=opn[id]===false;else done[id]=!done[id];
+save();grid();var f=document.querySelector('#c-'+id+' [data-a="'+a+'"]');if(f)f.focus()};
+var sel=0;
+function steps(){
+$("slist").innerHTML=STEPS.map(function(s,i){return '<button class="step" role="tab" aria-selected="'+(i===sel)+'" data-i="'+i+'"><span>'+B(i+1)+'</span>'+s.t+'</button>'}).join("");
+var s=STEPS[sel];
+var chips=s.k.map(function(k){var t=T[k[0]];return '<span class="chip" style="background:var('+t.s+');color:var('+t.c+')">'+t.name+" "+B(k[1])+'</span>'}).join("");
+$("spanel").innerHTML='<h3>ধাপ '+B(sel+1)+': '+s.t+'</h3><p>'+s.d+'</p><div class="chips">'+chips+'</div><button class="go" id="go">কার্ডগুলো দেখুন</button>'}
+$("slist").onclick=function(e){var b=e.target.closest(".step");if(!b)return;sel=+b.dataset.i;steps()};
+$("spanel").onclick=function(e){if(!e.target.closest("#go"))return;var k=STEPS[sel].k;hl={};k.forEach(function(x){hl[x[0]+x[1]]=1});cur=k[0][0];$("q").value="";tabs();grid();var c=$("c-"+k[0][0]+k[0][1]);document.getElementById("tools").scrollIntoView();if(c)c.focus({preventScroll:true})};
+function tips(){
+$("tips-list").innerHTML=TIPS.map(function(x,i){return '<button class="tip'+(tipOn[i]?" on":"")+'" data-i="'+i+'" aria-pressed="'+!!tipOn[i]+'"><span class="box">✓</span><span>'+x+'</span></button>'}).join("")}
+$("tips-list").onclick=function(e){var b=e.target.closest(".tip");if(!b)return;var i=b.dataset.i;tipOn[i]=!tipOn[i];save();tips();var f=document.querySelector('.tip[data-i="'+i+'"]');if(f)f.focus()};
+$("theme").onclick=function(){var r=document.documentElement,d=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=d?"light":"dark"};
+tabs();grid();steps();tips();
+</script>
+</body>
+</html>
